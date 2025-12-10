@@ -461,3 +461,8 @@ label input {
 .debug-toggle-label {
   text-align: right;
 }
+
+img.alien-hunt-gif {
+  width: 400px;
+  height: auto;
+}
