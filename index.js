@@ -175,7 +175,7 @@
       if (currentState === 'offline') {
         e.preventDefault();
         cancelLive();
-        setLiveState('polling', 'Waking server… (may take a few minutes)');
+        setLiveState('polling', 'Waking server... (may take ~2 mins)');
         wakeServer();
         poll(0);
         return;
@@ -183,7 +183,7 @@
 
       e.preventDefault();
       cancelLive();
-      setLiveState('polling', 'Waking server… (may take a few minutes)');
+      setLiveState('polling', 'Waking server... (may take ~2 mins)');
       checkHealth().then(function (up) {
         if (currentState !== 'polling') return;
         if (up) {
