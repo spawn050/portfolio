@@ -1,5 +1,5 @@
 (function () {
-  const USE_FILL_ICONS = false; // Set to false for stroke icons, true for fill icons
+  const USE_FILL_ICONS = true; // Set to false for stroke icons, true for fill icons
 
   const links = document.querySelector('.links');
   if (links) {
