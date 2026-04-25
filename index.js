@@ -1,6 +1,13 @@
 (function () {
+  const USE_FILL_ICONS = true; // Set to false for stroke icons
+
   const html = document.documentElement;
   const toggle = document.getElementById('theme-toggle');
+
+  const links = document.querySelector('.links');
+  if (links) {
+    links.classList.add(USE_FILL_ICONS ? 'show-fill' : 'show-stroke');
+  }
 
   function getTheme() {
     const saved = localStorage.getItem('theme');

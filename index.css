@@ -250,6 +250,17 @@ h3 {
   transform: translateY(-1px);
 }
 
+/* Icon style toggle */
+.links .icon-stroke,
+.links .icon-fill {
+  display: none;
+}
+
+.links.show-stroke .icon-stroke,
+.links.show-fill .icon-fill {
+  display: block;
+}
+
 /* ========================================
    Cards
    ======================================== */
