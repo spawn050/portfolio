@@ -29,6 +29,7 @@
     // Sync mode toggle icon state
     if (modeToggle) {
       modeToggle.classList.toggle('is-dark', currentMode === 'dark');
+      modeToggle.setAttribute('aria-label', currentMode === 'dark' ? 'Toggle light mode' : 'Toggle dark mode');
     }
   }
 
