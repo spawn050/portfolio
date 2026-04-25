@@ -26,12 +26,9 @@
       select.value = currentTheme;
     }
 
-    // Sync mode toggle icon visibility
+    // Sync mode toggle icon state
     if (modeToggle) {
-      var sun = modeToggle.querySelector('.icon-sun');
-      var moon = modeToggle.querySelector('.icon-moon');
-      if (sun) sun.style.opacity = currentMode === 'light' ? '1' : '0';
-      if (moon) moon.style.opacity = currentMode === 'dark' ? '1' : '0';
+      modeToggle.classList.toggle('is-dark', currentMode === 'dark');
     }
   }
 

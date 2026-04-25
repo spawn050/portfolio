@@ -83,8 +83,9 @@ a:hover {
 
 /* Mode toggle (sun / moon) */
 .mode-toggle {
-  width: 40px;
-  height: 40px;
+  position: relative;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   border: 1px solid var(--border);
   background: var(--card-bg);
@@ -115,6 +116,16 @@ a:hover {
 .mode-toggle .icon-moon {
   opacity: 0;
   transform: rotate(90deg) scale(0.5);
+}
+
+.mode-toggle.is-dark .icon-sun {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
+}
+
+.mode-toggle.is-dark .icon-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
 }
 
 /* Theme dropdown */
@@ -442,6 +453,11 @@ footer a:hover {
   .theme-bar {
     top: 1rem;
     right: 1rem;
+  }
+
+  .mode-toggle {
+    width: 38px;
+    height: 38px;
   }
 
   .hero {
