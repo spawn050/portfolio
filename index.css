@@ -417,8 +417,11 @@ h3 {
 .project-media {
   width: 100%;
   max-width: 520px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
+  cursor: pointer;
   transition: border-color 0.3s ease;
 }
 
@@ -471,6 +474,43 @@ footer a:hover {
 .toast.show {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+/* ========================================
+   Lightbox
+   ======================================== */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  cursor: zoom-out;
+}
+
+.lightbox.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.lightbox.show img {
+  transform: scale(1);
 }
 
 /* ========================================
