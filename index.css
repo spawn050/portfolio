@@ -68,14 +68,58 @@ a:hover {
 }
 
 /* ========================================
-   Theme Toggle
+   Theme Bar (mode toggle + theme dropdown)
    ======================================== */
 
-.theme-select-wrapper {
+.theme-bar {
   position: fixed;
   top: 1.5rem;
   right: 1.5rem;
   z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Mode toggle (sun / moon) */
+.mode-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.mode-toggle:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+.mode-toggle svg {
+  position: absolute;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mode-toggle .icon-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.mode-toggle .icon-moon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5);
+}
+
+/* Theme dropdown */
+.theme-select-wrapper {
+  position: relative;
 }
 
 .theme-select {
@@ -395,7 +439,7 @@ footer a:hover {
     --space-lg: 2rem;
   }
 
-  .theme-select-wrapper {
+  .theme-bar {
     top: 1rem;
     right: 1rem;
   }

@@ -1,12 +1,13 @@
 /**
  * Pluggable theme definitions.
+ * Each theme has a light and dark mode.
  * Add new themes here — they automatically appear in the UI dropdown.
  */
 window.THEMES = [
   {
-    id: 'light',
-    name: 'Light',
-    variables: {
+    id: 'default',
+    name: 'Default',
+    light: {
       '--bg': '#FDFCF8',
       '--bg-alt': '#F5F5F0',
       '--card-bg': '#FFFFFF',
@@ -18,12 +19,8 @@ window.THEMES = [
       '--shadow-sm': '0 1px 2px rgba(0, 0, 0, 0.04)',
       '--shadow-md': '0 4px 12px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.04)',
       '--shadow-lg': '0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04)'
-    }
-  },
-  {
-    id: 'dark',
-    name: 'Dark',
-    variables: {
+    },
+    dark: {
       '--bg': '#0C0A09',
       '--bg-alt': '#292524',
       '--card-bg': '#1C1917',
@@ -40,7 +37,20 @@ window.THEMES = [
   {
     id: 'ocean',
     name: 'Ocean',
-    variables: {
+    light: {
+      '--bg': '#F0F9FF',
+      '--bg-alt': '#E0F2FE',
+      '--card-bg': '#FFFFFF',
+      '--text': '#0C1929',
+      '--text-muted': '#64748B',
+      '--accent': '#0284C7',
+      '--accent-hover': '#0369A1',
+      '--border': '#BAE6FD',
+      '--shadow-sm': '0 1px 2px rgba(2, 132, 199, 0.08)',
+      '--shadow-md': '0 4px 12px rgba(2, 132, 199, 0.10), 0 1px 3px rgba(2, 132, 199, 0.08)',
+      '--shadow-lg': '0 8px 24px rgba(2, 132, 199, 0.12), 0 2px 6px rgba(2, 132, 199, 0.10)'
+    },
+    dark: {
       '--bg': '#0B1120',
       '--bg-alt': '#1E293B',
       '--card-bg': '#151F32',
