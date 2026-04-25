@@ -422,6 +422,52 @@ h3 {
   text-decoration: none;
 }
 
+/* Live link states */
+.live-spinner {
+  animation: liveSpin 1s linear infinite;
+  display: none;
+}
+
+@keyframes liveSpin {
+  to { transform: rotate(360deg); }
+}
+
+.project-links a.live-link--polling .live-icon,
+.project-links a.live-link--ready .live-icon,
+.project-links a.live-link--offline .live-icon {
+  display: none;
+}
+
+.project-links a.live-link--polling .live-spinner {
+  display: inline-block;
+}
+
+.project-links a.live-link--polling {
+  color: var(--text-muted) !important;
+  border-color: var(--border) !important;
+  background: var(--bg-alt) !important;
+  cursor: pointer;
+}
+
+.project-links a.live-link--ready {
+  color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  background: var(--card-bg) !important;
+  animation: livePulse 2s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% { transform: translateY(-1px) scale(1); }
+  50% { transform: translateY(-1px) scale(1.02); }
+}
+
+.project-links a.live-link--offline {
+  color: var(--text-muted) !important;
+  border-color: var(--border) !important;
+  background: var(--bg-alt) !important;
+  opacity: 0.7;
+}
+
 .project-desc {
   color: var(--text-muted);
   margin-bottom: var(--space-sm);

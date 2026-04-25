@@ -88,4 +88,112 @@
       closeLightbox();
     }
   });
+
+  // Wake-on-demand live link
+  var liveLink = document.getElementById('live-link');
+  if (liveLink) {
+    var HEALTH_URL = 'http://lwiggy.duckdns.org/api/health';
+    var LIVE_URL = liveLink.getAttribute('data-live-url') || 'http://lwiggy.duckdns.org';
+    var LAMBDA_URL = 'https://ckwxde5lzj2sgdd2pab6blaley0djgxo.lambda-url.ap-south-1.on.aws/';
+    var TIMEOUT = 5000;
+    var MAX_RETRIES = 5;
+    var BASE_DELAY = 2000;
+    var MAX_DELAY = 30000;
+    var JITTER = 0.3;
+
+    var liveLabel = liveLink.querySelector('.live-label');
+    var abortCtrl = null;
+    var pollTimer = null;
+    var currentState = 'idle';
+
+    function setLiveState(state, text) {
+      currentState = state;
+      liveLink.classList.remove('live-link--polling', 'live-link--ready', 'live-link--offline');
+      if (state !== 'idle') {
+        liveLink.classList.add('live-link--' + state);
+      }
+      if (liveLabel) liveLabel.textContent = text;
+    }
+
+    function cancelLive() {
+      if (abortCtrl) abortCtrl.abort();
+      if (pollTimer) clearTimeout(pollTimer);
+      abortCtrl = null;
+      pollTimer = null;
+    }
+
+    function checkHealth() {
+      abortCtrl = new AbortController();
+      var timer = setTimeout(function () { abortCtrl.abort(); }, TIMEOUT);
+      return fetch(HEALTH_URL, { mode: 'no-cors', signal: abortCtrl.signal })
+        .then(function () {
+          clearTimeout(timer);
+          return true;
+        })
+        .catch(function () {
+          clearTimeout(timer);
+          return false;
+        });
+    }
+
+    function wakeServer() {
+      fetch(LAMBDA_URL, { method: 'GET', mode: 'no-cors' }).catch(function () {});
+    }
+
+    function poll(attempt) {
+      if (attempt >= MAX_RETRIES) {
+        setLiveState('offline', 'Server offline');
+        return;
+      }
+
+      checkHealth().then(function (up) {
+        if (currentState !== 'polling') return;
+        if (up) {
+          setLiveState('ready', 'Open Lwiggy →');
+          return;
+        }
+
+        var delay = Math.min(BASE_DELAY * Math.pow(2, attempt), MAX_DELAY);
+        var jittered = Math.round(delay * (1 - JITTER / 2 + Math.random() * JITTER));
+        pollTimer = setTimeout(function () {
+          poll(attempt + 1);
+        }, jittered);
+      });
+    }
+
+    liveLink.addEventListener('click', function (e) {
+      if (currentState === 'polling') {
+        e.preventDefault();
+        cancelLive();
+        setLiveState('idle', 'Try it live');
+        return;
+      }
+      if (currentState === 'ready') {
+        setLiveState('idle', 'Try it live');
+        return;
+      }
+      if (currentState === 'offline') {
+        e.preventDefault();
+        cancelLive();
+        setLiveState('polling', 'Waking server…');
+        wakeServer();
+        poll(0);
+        return;
+      }
+
+      e.preventDefault();
+      cancelLive();
+      setLiveState('polling', 'Waking server…');
+      checkHealth().then(function (up) {
+        if (currentState !== 'polling') return;
+        if (up) {
+          window.open(LIVE_URL, '_blank');
+          setLiveState('idle', 'Try it live');
+        } else {
+          wakeServer();
+          poll(0);
+        }
+      });
+    });
+  }
 })();
