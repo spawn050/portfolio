@@ -1,48 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omkar Portfolio</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="index.css  ">
+    <title>Omkar Satam — Full-Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
 </head>
-
 <body>
-    <h1>Omkar Satam</h1>
-    <div class="grid">
-            <div>
-                <p>I’m a full-stack developer with hands-on experience building real-world projects across both front-end and back-end. I enjoy solving problems and creating clean, responsive interfaces backed by solid backend logic.</p>
-                <p style="margin-top: 40px;">Email : <a href="mailto:omkarsatam.office@gmail.com" target="_blank">omkarsatam.office@gmail.com</a></p>
-                <p><a href="https://www.linkedin.com/in/omkar-satam-957648360/" target="_blank">LinkedIn</a> <a href="https://github.com/spawn050" target="_blank">GitHub</a> <a href="">Resume</a></p>
-            </div>
-            <img src="./assets/OmkarOriginal.jpg" alt="profile-photo" width="300px" height="300px" style="margin-left: 50px;">
-    </div>
-    <hr>
-    <div>
-        <h2>Skills</h2>
-        <ul>
-            <li><strong>Languages :</strong> Java, JavaScript, MySQL, MongoDB, HTML, CSS</li>
-            <li style="margin-top: 10px;"><strong>Frameworks :</strong> React, Spring Boot, Express, Bootstrap, Material UI</li>
-            <li style="margin-top: 10px;"><strong>Others :</strong> Git, Docker, JWT, AWS(EC2, S3, Lambda, Route53)</li>
-        </ul>
-    </div>
-    <hr>
-    <div>
-        <h2>Projects</h2>
-        <ul>
-            <li><h2><a href="https://github.com/spawn050/lwiggy" target="_blank">Lwiggy - Food Delivery Web App</a> | <a href="http://lwiggy.duckdns.org" target="_blank">Live</a></h2></li>
-            <img class="lwiggy-gif" src="./assets/lwiggy.gif" alt="lwiggy-gif" style="margin-top: 30px;">
-            <p>A full-stack food delivery app with location-based restaurant discovery, cart management, order tracking, and JWT-secured user authentication.</p>
-            <p><strong>Stack : </strong>React, Material UI, Java, Spring Boot, MySQL, Docker, JWT</p>
-            <li><h2><a href="https://github.com/spawn050/alien-hunt" target="_blank">Alien Hunt - Single-player game</a></h2></li>
-            <img class="alien-hunt-gif" src="./assets/Alien_Hunt.gif" alt="alien-hunt-gif" style="margin-top: 30px;">
-            <p>A fast-paced 2D game where you hunt aliens and survive incoming threats, focused on clean and fun gameplay.</p>
-            <p><strong>Stack : </strong>C++, Raylib, Makefile, Git</p>
-        </ul>
-    </div>
-    <script src="index.js"></script>
-</body>
+    <header class="container">
+        <h1>Omkar Satam</h1>
+        <p class="role">Full-Stack Developer</p>
+        <p class="bio">
+            I’m a full-stack developer with hands-on experience building real-world projects across both front-end and back-end.
+            I enjoy solving problems and creating clean, responsive interfaces backed by solid backend logic.
+        </p>
+        <div class="links">
+            <a href="mailto:omkarsatam.office@gmail.com" target="_blank">Email</a>
+            <a href="https://www.linkedin.com/in/omkar-satam-957648360/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/spawn050" target="_blank">GitHub</a>
+            <a href="#" target="_blank">Resume</a>
+        </div>
+    </header>
 
+    <main class="container">
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skill-group">
+                <span class="skill-label">Languages</span>
+                <div class="tags">
+                    <span class="tag">Java</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">MongoDB</span>
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <span class="skill-label">Frameworks</span>
+                <div class="tags">
+                    <span class="tag">React</span>
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">Express</span>
+                    <span class="tag">Bootstrap</span>
+                    <span class="tag">Material UI</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <span class="skill-label">Others</span>
+                <div class="tags">
+                    <span class="tag">Git</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">JWT</span>
+                    <span class="tag">AWS</span>
+                    <span class="tag">EC2</span>
+                    <span class="tag">S3</span>
+                    <span class="tag">Lambda</span>
+                    <span class="tag">Route53</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+
+            <article class="project">
+                <div class="project-header">
+                    <h3>Lwiggy</h3>
+                    <div class="project-links">
+                        <a href="https://github.com/spawn050/lwiggy" target="_blank">GitHub</a>
+                        <a href="http://lwiggy.duckdns.org" target="_blank">Live</a>
+                    </div>
+                </div>
+                <p class="project-desc">A full-stack food delivery app with location-based restaurant discovery, cart management, order tracking, and JWT-secured user authentication.</p>
+                <div class="tags">
+                    <span class="tag">React</span>
+                    <span class="tag">Material UI</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">JWT</span>
+                </div>
+                <img class="project-media" src="./assets/lwiggy.gif" alt="Lwiggy food delivery app demo" loading="lazy">
+            </article>
+
+            <article class="project">
+                <div class="project-header">
+                    <h3>Alien Hunt</h3>
+                    <div class="project-links">
+                        <a href="https://github.com/spawn050/alien-hunt" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <p class="project-desc">A fast-paced 2D game where you hunt aliens and survive incoming threats, focused on clean and fun gameplay.</p>
+                <div class="tags">
+                    <span class="tag">C++</span>
+                    <span class="tag">Raylib</span>
+                    <span class="tag">Makefile</span>
+                    <span class="tag">Git</span>
+                </div>
+                <img class="project-media" src="./assets/Alien_Hunt.gif" alt="Alien Hunt game demo" loading="lazy">
+            </article>
+        </section>
+    </main>
+
+    <footer class="container">
+        <p>Interested in working together? <a href="mailto:omkarsatam.office@gmail.com">Get in touch</a>.</p>
+    </footer>
+</body>
 </html>
