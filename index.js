@@ -96,9 +96,9 @@
     var LIVE_URL = liveLink.getAttribute('data-live-url') || 'http://lwiggy.duckdns.org';
     var LAMBDA_URL = 'https://ckwxde5lzj2sgdd2pab6blaley0djgxo.lambda-url.ap-south-1.on.aws/';
     var TIMEOUT = 5000;
-    var MAX_RETRIES = 5;
+    var MAX_RETRIES = 10;
     var BASE_DELAY = 2000;
-    var MAX_DELAY = 30000;
+    var MAX_DELAY = 300000;
     var JITTER = 0.3;
 
     var liveLabel = liveLink.querySelector('.live-label');
@@ -175,7 +175,7 @@
       if (currentState === 'offline') {
         e.preventDefault();
         cancelLive();
-        setLiveState('polling', 'Waking server…');
+        setLiveState('polling', 'Waking server… (may take a few minutes)');
         wakeServer();
         poll(0);
         return;
@@ -183,7 +183,7 @@
 
       e.preventDefault();
       cancelLive();
-      setLiveState('polling', 'Waking server…');
+      setLiveState('polling', 'Waking server… (may take a few minutes)');
       checkHealth().then(function (up) {
         if (currentState !== 'polling') return;
         if (up) {
