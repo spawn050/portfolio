@@ -3,11 +3,13 @@
  * Depends on window.THEMES (defined in themes.js).
  */
 (function () {
+  const DEV_SHOW_THEME_SELECTOR = false;
+
   const html = document.documentElement;
   const select = document.getElementById('theme-select');
   const modeToggle = document.getElementById('mode-toggle');
 
-  var currentTheme = 'default';
+  var currentTheme = 'claude';
   var currentMode = 'light';
 
   function apply() {
@@ -57,6 +59,11 @@
 
   function init() {
     populateDropdown();
+
+    if (!DEV_SHOW_THEME_SELECTOR) {
+      var wrapper = document.querySelector('.theme-select-wrapper');
+      if (wrapper) wrapper.style.display = 'none';
+    }
 
     var savedTheme = localStorage.getItem('theme');
     var savedMode = localStorage.getItem('mode');
