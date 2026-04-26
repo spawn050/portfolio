@@ -1,7 +1,7 @@
 /**
  * Pluggable theme definitions.
  * Each theme has a light and dark mode.
- * Add new themes here — they automatically appear in the UI dropdown.
+ * Add new themes here which will automatically appear in the UI dropdown.
  */
 window.THEMES = [
   {

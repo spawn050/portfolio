@@ -1,5 +1,5 @@
 /**
- * Theme Manager — handles theme dropdown, light/dark mode toggle, and persistence.
+ * handles theme dropdown, light/dark mode toggle, and persistence.
  * Depends on window.THEMES (defined in themes.js).
  */
 (function () {
@@ -68,7 +68,7 @@
     if (savedMode === 'light' || savedMode === 'dark') {
       currentMode = savedMode;
     } else {
-      // No saved preference — respect system dark mode
+      // No saved preference, respect system dark mode
       currentMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
 
