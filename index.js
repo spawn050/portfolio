@@ -92,13 +92,12 @@
   // Wake-on-demand live link
   var liveLink = document.getElementById('live-link');
   if (liveLink) {
-    var HEALTH_URL = 'http://lwiggy.duckdns.org/api/health';
     var LIVE_URL = liveLink.getAttribute('data-live-url') || 'http://lwiggy.duckdns.org';
     var LAMBDA_URL = 'https://ckwxde5lzj2sgdd2pab6blaley0djgxo.lambda-url.ap-south-1.on.aws/';
-    var TIMEOUT = 5000;
-    var MAX_RETRIES = 10;
+    var TIMEOUT = 10000;
+    var MAX_RETRIES = 15;
     var BASE_DELAY = 2000;
-    var MAX_DELAY = 300000;
+    var MAX_DELAY = 30000;
     var JITTER = 0.3;
 
     var liveLabel = liveLink.querySelector('.live-label');
@@ -125,19 +124,18 @@
     function checkHealth() {
       abortCtrl = new AbortController();
       var timer = setTimeout(function () { abortCtrl.abort(); }, TIMEOUT);
-      return fetch(HEALTH_URL, { mode: 'no-cors', signal: abortCtrl.signal })
-        .then(function () {
+      return fetch(LAMBDA_URL, { signal: abortCtrl.signal })
+        .then(function (res) {
           clearTimeout(timer);
-          return true;
+          return res.json();
+        })
+        .then(function (data) {
+          return data.status === 'running';
         })
         .catch(function () {
           clearTimeout(timer);
           return false;
         });
-    }
-
-    function wakeServer() {
-      fetch(LAMBDA_URL, { method: 'GET', mode: 'no-cors' }).catch(function () {});
     }
 
     function poll(attempt) {
@@ -176,7 +174,6 @@
         e.preventDefault();
         cancelLive();
         setLiveState('polling', 'Waking server... (may take ~2 mins)');
-        wakeServer();
         poll(0);
         return;
       }
@@ -190,7 +187,6 @@
           window.open(LIVE_URL, '_blank');
           setLiveState('idle', 'Try it live');
         } else {
-          wakeServer();
           poll(0);
         }
       });
